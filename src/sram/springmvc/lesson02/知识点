@@ -1,0 +1,45 @@
+lesson2 HTTP请求地址映射
+
+一、URL表达式
+
+	@RequestMapping不但支持标准的URL，还支持Ant风格（即?、*和**的字符，参见3.3.2节的内容）的和带{xxx}占位符的URL。以下URL都是合法的：
+		/user/*/createUser
+		    匹配/user/aaa/createUser、/user/bbb/createUser等URL。
+		
+		/user/**/createUser
+		    匹配/user/createUser、/user/aaa/bbb/createUser等URL。
+		
+		/user/createUser??
+		    匹配/user/createUseraa、/user/createUserbb等URL。
+		
+		/user/{userId}
+		    匹配user/123、user/abc等URL。
+		
+		/user/**/{userId}
+		    匹配user/aaa/bbb/123、user/aaa/456等URL。
+		
+		company/{companyId}/user/{userId}/detail
+		    匹配company/123/user/456/detail等的URL。
+
+二、绑定{xxx}中的值
+		@RequestMapping("/{userId}")
+		public ModelAndView showDetail(@PathVariable("userId") String userId){
+
+三、通过请求方法限定:
+		@RequestMapping(value="/hello", method=RequestMethod.POST) 
+		
+		HTTP
+		|-GET、POST、PUT、DELETE、HEAD和OPTIONS
+		一般浏览器只支持GET和POST方法
+		
+四、通过 请求参数限定/请求头参数限定
+		@RequestMapping(value="/delete", params="userId") 
+		
+		@RequestMapping(value="/show",headers="content-type=text/*")
+		
+		支持简单的表达式
+			"param1"：表示请求必须包含名为param1的请求参数。
+			"!param1"：表示请求不能包含名为param1的请求参数。
+			"param1!=value1"：表示请求包含名为param1的请求参数，但其值不能为value1。
+			{"param1=value1","param2"}：请求必须包含名为param1和param2的两个请求参数，且param1参数的值必须为value1
+			
