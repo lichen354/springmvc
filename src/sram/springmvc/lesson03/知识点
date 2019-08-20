@@ -1,1 +1,61 @@
-lesson03 HTTP请求数据的绑定
+lesson03 
+HTTP请求数据的绑定
+	
+@RequestParam绑定请求体
+	e.g.
+	@RequestMapping(value="/handle1")
+	public String handle1(@RequestParam("userName") String userName,
+			      @RequestParam("password") String password,
+			      @RequestParam("realName") String realName){
+		...
+	}
+	
+	@RequestParam有以下三个参数。
+		value：参数名。
+		required：是否必需，默认为true，表示请求中必须包含对应的参数名，如果不存在将抛出异常。
+		defaultValue：默认参数名，设置该参数时，自动将required设为false。(极少用，不推荐)
+			
+	
+@CookieValue绑定cookie、@RequestHeader绑定请求头
+	e.g.
+	@RequestMapping(value="/handle2")
+	public String handle2(@CookieValue("JSESSIONID") String sessionId,
+	       @RequestHeader("Accept-Language") String accpetLanguage){
+	  ...
+	}
+	
+
+对象绑定
+	Spring MVC按  http参数名/表单属性名---对象属性名	的规则，自动绑定请求数据，自动进行基本类型数据转换
+	 
+	@RequestMapping("handle3")
+	public String handle3(User user) {
+		...
+	}
+	
+springMVC静态资源访问
+	方式一(推荐)
+	<mvc:resources />允许静态资源放在任何地方，如WEB-INF目录下、类路径下等
+		e.g.
+		<mvc:annotation-driven/>
+	   	<mvc:resources mapping="/html/**" location="/html/"/>
+		注意：
+			<mvc:annotation-driven/>必须有，否则会使requestMapping失效。
+			location:指location指定的目录不要拦截，直接请求，这里指在根目录下的resources文件下的所有文件
+			mapping:值在resources文件下的所有文件(**代表所有文件)
+	 
+	 方式二
+	   <mvc:annotation-driven/>
+	   <mvc:default-servlet-handler/>
+	 	注意:
+	 		同样需要<mvc:annotation-driven/>
+	 
+	 
+	 方式三 web.xml中
+	 <servlet-mapping>  
+	     <servlet-name>default</servlet-name>  
+	     <url-pattern>*.html</url-pattern>  
+	 </servlet-mapping>
+	
+	
+	

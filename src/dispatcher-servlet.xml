@@ -2,7 +2,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd">
 
        <!-- 自动扫描 -->
@@ -12,4 +14,21 @@
 			<property name="prefix" value="/WEB-INF/jsp/"></property>
 			<property name="suffix" value=".jsp"></property>
        </bean>
+	   
+	   <!-- 
+	   	配置静态资源访问方式二(推荐)
+	   	mvc:resources 
+	   	如果没有<annotation-driven/>,<mvn:resources>元素会阻止任意控制器被调用。
+		若不需要resources则不需要配置<annotation-driven/>
+	    -->
+	   <mvc:annotation-driven/>
+	   <mvc:resources mapping="/html/**" location="/html/"/>
+	   
+	   <!-- 
+	   	配置静态资源访问方式三
+	   	同样需要<mvc:annotation-driven/>
+	    -->
+	   <mvc:annotation-driven/>
+	   <mvc:default-servlet-handler/>
+	   
 </beans>

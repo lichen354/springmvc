@@ -16,48 +16,48 @@ public class URLController {
 	//user/*/createUser
 	//匹配/user/aaa/createUser、/user/bbb/createUser等URL。
 	@RequestMapping("user/*/createUser")
-	public String m0() {
-		System.out.println("m0");
+	public String handle0() {
+		System.out.println("handle0");
 		return "index";
 	}
 	
 	//user/**/createUser
     //匹配/user/createUser、/user/aaa/bbb/createUser等URL。
 	@RequestMapping("user/**/createUser")
-	public String m1() {
-		System.out.println("m1");
+	public String handle1() {
+		System.out.println("handle1");
 		return "index";
 	}
 	
 	//user/createUser??
 	//匹配/user/createUseraa、/user/createUserbb等URL。
 	@RequestMapping("user/createUser??")
-	public String m2() {
-		System.out.println("m2");
+	public String handle2() {
+		System.out.println("handle2");
 		return "index";
 	}
 	
 	//user/{userId}
     //匹配user/123、user/abc等URL。
 	@RequestMapping("user/{userId}")
-	public String m3() {
-		System.out.println("m3");
+	public String handle3() {
+		System.out.println("handle3");
 		return "index";
 	}
 	
 	//user/**/{userId}
 	//匹配user/aaa/bbb/123、user/aaa/456等URL。
 	@RequestMapping("user/**/{userId}")
-	public String m4() {
-		System.out.println("m4");
+	public String handle4() {
+		System.out.println("handle4");
 		return "index";
 	}
 	
 	//company/{companyId}/user/{userId}/detail
 	//匹配company/123/user/456/detail等的URL。
 	@RequestMapping("company/{companyId}/user/{userId}/detail")
-	public String m5() {
-		System.out.println("m5");
+	public String handle5() {
+		System.out.println("handle5");
 		return "index";
 	}
 	

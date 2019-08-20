@@ -11,10 +11,9 @@
 	  	也可以使用init-param元素指定xxx-servlet.xml的位置(推荐)
 	  -->
 	  <init-param>
-	  	<param-name>contextConfigureLocation</param-name>
-	  	<param-value>classpath:dispatcher-servlet.xml</param-value>
-	  </init-param>
-	  
+	  		<param-name>contextConfigLocation</param-name>
+	  		<param-value>classpath:dispatcher-servlet.xml</param-value> 
+  	  </init-param>
 	  <!-- load-on-startup是可选的 如果设置，则app启动时加载该servlet -->
 	  <load-on-startup>1</load-on-startup>
   </servlet>
@@ -23,5 +22,12 @@
 	  <servlet-name>dispatcher</servlet-name>
 	  <url-pattern>/</url-pattern>
   </servlet-mapping>
-  	
+  <!-- 
+  	配置静态资源访问方式一
+  <servlet-mapping>  
+     <servlet-name>default</servlet-name>  
+     <url-pattern>*.html</url-pattern>  
+  </servlet-mapping>   
+  -->
+  
 </web-app>
