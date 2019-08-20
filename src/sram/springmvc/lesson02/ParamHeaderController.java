@@ -1,4 +1,4 @@
-package sram.springmvc;
+package sram.springmvc.lesson02;
 
 public class ParamHeaderController {
 
