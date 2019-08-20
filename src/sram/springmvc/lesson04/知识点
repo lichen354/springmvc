@@ -1,0 +1,11 @@
+使用Servlet API对象作为入参
+	public void handle(HttpServletRequest req, HttpServletResponse res){
+		...
+	}
+	注意:
+	如果处理方法自行使用HttpServletResponse返回响应，则处理方法的返回值设置成void即可。
+	即
+		public void handle(HttpServletResponse res){
+			...
+			res.getWriter.
+		}
