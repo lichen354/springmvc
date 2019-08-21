@@ -7,5 +7,28 @@
 	即
 		public void handle(HttpServletResponse res){
 			...
-			res.getWriter.
+			res.getWriter().append("i love China");
 		}
+		
+使用Spring的Servlet API代理类
+	SpringMVC在org.springframework.web.context.request包中定义了若干个可代理Servlet原生API类的接口
+	如WebRequest和NativeWebRequest
+	
+	
+使用IO对象作为入参
+	SpringMVC将获取ServletRequest的InputStream/Reader或ServletResponse的OutputStream/Writer,
+	然后按类型匹配的方式，传递给控制器的处理方法入参。
+	
+其他类型的参数
+	控制器处理方法的入参除支持以上类型的参数以外，还支持java.util.Locale、java.security.Principal，
+	可以通过Servlet的HttpServletRequest 的getLocale()及getUserPrincipal()得到相应的值。
+	如果处理方法的入参类型为Locale或Principal，Spring MVC自动从请求对象中获取相应的对象并传递给处理方法的入参。
+	
+
+转发和重定向
+	方式一:使用传统方式实现转发和重定向
+	　　request.getRequestDispatcher(" ").forward(request,response);
+	　　response.sendRedirect(" ");
+	方式二:
+		return "forward:hello.action";
+		return "redirect:/hello.action";
