@@ -1,0 +1,50 @@
+HttpMessageConverter	http消息转换器接口
+	定义了如何将http报文(报文中的参数)--->java对象以及java对象--->http报文
+	
+	实现类
+		|-StringHttpMessageConverter
+		|-ByteArrayHttpMessageConverter
+		|-BufferedImageHttpMessageConverter
+		|-MappingJackson2HttpMessageConverter
+		|-XmlAwareFormHttpMessageConverter
+		|-...
+	
+@RequestBody/@ResponseBody(常用)
+	接收请体内容/返回响应体
+HttpEntity<T>/ResponseEntity<T>
+	接收请/返回响应(head+body)
+	
+
+
+关于<mvc:annotation-driven />注解
+
+	一、<mvc:annotation-driven />做了什么
+		|-注册了DefaultAnnotationHandlerMapping和AnnotationMethodHandlerAdapter
+		|-其他功能
+			|- Type ConversionService 
+			|- @NumberFormat
+			|- @DateTimeFormat  Joda Time 
+			|- @Valid  JSR-303 
+			|- 读写XML	JAXB2 
+			|- 读写JSON	Jackson
+			
+	二、使用jackson处理json数据
+		① <mvc:annotation-driven />
+		② 添加jar包(jackson-core/jackson-annotation/jackson-databind)
+		
+	
+	
+	三、使用fastjson处理json数据
+		①<mvc:annotation-driven >
+			<mvc:message-converters register-defaults="true">
+				<bean class="converter的全类名"></bean>
+				...
+			</mvc:message-converters>
+	   </mvc:annotation-driven>
+	   ② fastjson.jar
+	
+	四、使用jaxb2处理xml数据
+		@XmlRootElement(name="xml的根元素")
+		实体类Class
+		
+		jaxb2为JDK(1.6+)自带

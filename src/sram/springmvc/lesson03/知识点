@@ -56,6 +56,9 @@ springMVC静态资源访问
 	     <servlet-name>default</servlet-name>  
 	     <url-pattern>*.html</url-pattern>  
 	 </servlet-mapping>
+
+
+
 	
 	
 	
