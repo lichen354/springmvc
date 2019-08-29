@@ -3,6 +3,7 @@ package sram.springmvc.lesson05;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import sram.springmvc.lesson05.pojo.Person;
 
@@ -26,5 +27,18 @@ public class XmlConverterController {
     public String handle1(@RequestBody Person Person) {
 		 System.out.println(Person);
 		 return "index";
-    } 
+    }
+	/*
+	 * 返回xml格式数据
+	 */
+	@RequestMapping(value="handle2")
+	@ResponseBody
+    public Person handle2() {
+		Person p = new Person();
+		p.setName("小强");
+		p.setAge(12);
+		p.setSex("man");
+		 return p;
+    }
+	
 }

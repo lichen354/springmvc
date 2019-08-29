@@ -1,13 +1,14 @@
-HttpMessageConverter	http消息转换器接口
-	定义了如何将http报文(报文中的参数)--->java对象以及java对象--->http报文
+HttpMessageConverter	http信息转换器接口
+	定义了如何将http报文--->java对象以及java对象--->http报文
 	
-	实现类
-		|-StringHttpMessageConverter
+	自动加载如下实现
 		|-ByteArrayHttpMessageConverter
-		|-BufferedImageHttpMessageConverter
-		|-MappingJackson2HttpMessageConverter
-		|-XmlAwareFormHttpMessageConverter
-		|-...
+		|-StringHttpMessageConverter
+		|-ResourceHttpMessageConverter
+		|-xml.SourceHttpMessageConverter
+		|-support.AllEncompassingFormHttpMessageConverter
+		|-xml.Jaxb2RootElementHttpMessageConverter
+		|-json.MappingJackson2HttpMessageConverte
 	
 @RequestBody/@ResponseBody(常用)
 	接收请体内容/返回响应体
@@ -23,9 +24,9 @@ HttpEntity<T>/ResponseEntity<T>
 		|-其他功能
 			|- Type ConversionService 
 			|- @NumberFormat
-			|- @DateTimeFormat  Joda Time 
-			|- @Valid  JSR-303 
-			|- 读写XML	JAXB2 
+			|- @DateTimeFormat  Joda Time (专门处理日期时间的库)
+			|- @Valid  JSR-303 (JSR-303 是 JAVAEE6 中的一项子规范,叫做 Bean Validation)
+			|- 读写XML	JAXB2 (Java Architecture for XML Binding)
 			|- 读写JSON	Jackson
 			
 	二、使用jackson处理json数据

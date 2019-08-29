@@ -1,0 +1,40 @@
+springMVC文件上传/下载
+
+	Servlet技术出现之间，文件上传的编程仍然是一项很困难的任务，它涉及在服务器端解析原始的HTTP响应。
+为了减轻编程的痛苦，开发人员借助于商业的文件上传组件。值得庆幸的是，2003年，Apache Software Foundation
+发布了开源的commons FileUpload元件，它很快成为全求Servlet/Jsp程序员的戾气。
+	经过很多年，Servlet的设计人员才意识到文件上传的重要性，并终于成为Servlet3的内置特性。Servlet3的开
+发人员不再需要将commons FileUpload元件导入到他们的项目中去。
+	
+	因此，在springmvc中处理文件上传有两种方法:
+		1.使用commons FileUpload元件
+		2.利用Servlet3.0及其更高版本的内置支持。
+	
+	
+客户端-网页表单
+	<form表单添加enctype="multipart/form-data"且 method="post"		序列化二进制	0101001101101010101010110101
+	<input type="file"
+服务器端
+	1.使用commons FileUpload元件
+		commons-FileUpload.jar
+		commons-io.jar
+		
+	2.<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		    <!-- 最大上传大小，单位：字节(byte) -->
+		    <property name="maxUploadSize" value="100000"/>
+		    <!-- 你也可以在这里提供其他的属性 -->
+	   </bean>
+	   当 Spring 的DispatcherServlet检测到一个 multi-part 请求时，它会激活你声明好的解析器，然后把这个解析器转交给请求。
+	   解析器会把当前的HttpServletRequest包装为 一个支持 multipart 文件上传的MultipartHttpServletRequest。
+	   使用这个MultipartHttpServletRequest，你就可以获取这个请求中的 multipart 的信息了, 同时也可以在你的控制器中访问这些 multipart 文件。
+	   
+	 pojo
+	 	MultipartFile字段类型
+	 	
+	 controller
+	 	@ModelAttribute
+	 	transferTo
+	   
+	   
+	   
+	   

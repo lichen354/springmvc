@@ -15,10 +15,6 @@
 			<property name="suffix" value=".jsp"></property>
        </bean>
 	   
-	   <mvc:annotation-driven >
-		
-	   </mvc:annotation-driven>
-	   
 	   <!-- 
 	   	配置静态资源访问方式二(推荐)
 	   	mvc:resources 
@@ -34,4 +30,25 @@
 	    <mvc:annotation-driven/>
 	    <mvc:default-servlet-handler/>
 	   -->
+	   
+	   <!--  
+		<mvc:annotation-driven conversion-service="conversionService" />
+		<bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+		     <property name="converters">
+		        <list>
+		              <bean class="sram.springmvc.lesson06.converter.PersonConverter"></bean>
+		              <bean class="sram.springmvc.lesson06.converter.DateConverter">
+		              	<constructor-arg index="0" value="YYYY-MM-dd"></constructor-arg>
+		              </bean>
+		        </list>
+		     </property>
+		</bean>
+	   -->
+	   <mvc:annotation-driven/>
+	   <mvc:default-servlet-handler/>
+	   <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		    <!-- 最大上传大小，单位：字节(byte) -->
+		    <property name="maxUploadSize" value="100000"/>
+		    <!-- 你也可以在这里提供其他的属性 -->
+	   </bean>
 </beans>

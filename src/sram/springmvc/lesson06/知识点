@@ -1,0 +1,54 @@
+数据转换、格式化、校验
+
+一、数据转换
+Spring自带了很多的转换器，从而可以自动化地转换类型。开发者无需再实现低级的普通类型间的转换.
+	String->Integer、String->Boolean、string->Long、数组-->集合(List、Set)等
+
+PropertyEditor
+	java.beans.PropertyEditor严格上来说，其实并不能算spring框架的接口，很明显看包名就明白此类是JDK自带的。
+	是Sun所制定的一套JavaBean规范，是为IDE图形化界面准备设置属性值的接口。
+	但是,PropertyEditor存在以下缺陷：
+
+	只能用于字符串和Java对象的转换，不适用于任意两个Java类型之间的转换；
+	对源对象及目标对象所在的上下文信息（如注解、所在宿主类的结构等）不敏感，在类型转换时不能利用这些上下文信息实施高级转换逻辑。
+
+	在spring3.x后，新出了一个更强大的转换器机制，Converter!
+
+Converter类型转换器接口
+	可以实现从任意的原类型转化到目标类型。
+	
+	public interface Converter<S, T> {//泛型S,T 分别为source原类型，target目标类型。
+
+		T convert(S source);
+	}
+	
+	注意不要与httpMessageConverter混淆
+		httpMessageConverter http报文信息->java对象  json/xml...
+		Converter参数类型转换
+		
+	
+自定义Converter
+	① 编写class 实现Converter<S, T>接口
+	② 注册converter
+		<mvc:annotation-driven conversion-service="conversionService"/>
+			<bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+			     <property name="converters">
+			        <list>
+			              <bean class="com.xxx.xxx.XXXConverter"/>
+			        </list>
+			     </property>
+			</bean>
+		</ mvc:annotation-driven>
+		
+		
+二、	格式化
+使用格式化器（Formatter）
+　　有些数据需要格式化，比如说金额(￥10 000.00)、日期(yyyy-MM-dd或者yyyy-MM-dd hh:ss:mm)等。
+　　Spring Context提供了相关的Formatter。它需要实现一个接口——Formatter
+　　
+	@DateTimeFormat("yyyy-MM-dd")
+	@NumberFormat("")
+	@PercentFormatter()
+
+
+三、校验
