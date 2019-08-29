@@ -18,7 +18,7 @@ import sram.springmvc.lesson10.pojo.Person;
  * 	 byte[] getBytes() 以字节数组形式返回文件内容
  * 	 String getContentType()	返回文件的内容类型
  * 	 InputStream getInputStream()	返回一个InputStream从中读取文件内容
- *   String getOriginalFilename()  返回文件原名
+ *	 String getOriginalFilename()  返回文件原名
  * 	 long getSize()		以字节为单位 返回文件大小
  * 	 void transferTo(File destination)	将上传的文件保存在目标目录下
  * 
