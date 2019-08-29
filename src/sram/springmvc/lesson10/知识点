@@ -24,9 +24,7 @@ springMVC文件上传/下载
 		    <property name="maxUploadSize" value="100000"/>
 		    <!-- 你也可以在这里提供其他的属性 -->
 	   </bean>
-	   当 Spring 的DispatcherServlet检测到一个 multi-part 请求时，它会激活你声明好的解析器，然后把这个解析器转交给请求。
-	   解析器会把当前的HttpServletRequest包装为 一个支持 multipart 文件上传的MultipartHttpServletRequest。
-	   使用这个MultipartHttpServletRequest，你就可以获取这个请求中的 multipart 的信息了, 同时也可以在你的控制器中访问这些 multipart 文件。
+	 SpringMVC可以简化文件上传的代码,但是必须满足条件:实现MultipartResolver接口,CommonsMultipartResolver实现了该接口
 	   
 	 pojo
 	 	MultipartFile字段类型
