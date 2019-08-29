@@ -46,9 +46,11 @@
 	   -->
 	   <mvc:annotation-driven/>
 	   <mvc:default-servlet-handler/>
-	   <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		    <!-- 最大上传大小，单位：字节(byte) -->
-		    <property name="maxUploadSize" value="100000"/>
+	   <bean id="multipartResolver11" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		    <!-- 最大上传大小，单位：字节(byte)  如果-1 表示无限制-->
+		    <property name="maxUploadSize" value="102400"/>
+		    <!-- 文件编码 -->
+		    <property name="defaultEncoding" value="utf-8"></property>
 		    <!-- 你也可以在这里提供其他的属性 -->
 	   </bean>
 </beans>

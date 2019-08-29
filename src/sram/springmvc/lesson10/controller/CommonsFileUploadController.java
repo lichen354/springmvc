@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import sram.springmvc.lesson10.pojo.Person;
 /**
  * 使用commonsFileUpload完成文件上传
  * 
@@ -30,11 +30,7 @@ import sram.springmvc.lesson10.pojo.Person;
 public class CommonsFileUploadController {
 
 	@RequestMapping("upload")
-	public String upload(HttpServletRequest request, @ModelAttribute Person person) {
-		String name = person.getName();
-		Integer age = person.getAge();
-		System.out.println("name="+name+"age="+age);
-		MultipartFile multfile = person.getImage();
+	public String upload(HttpServletRequest request, @RequestParam MultipartFile multfile) {
 		
 		String fileName = multfile.getOriginalFilename();
 		

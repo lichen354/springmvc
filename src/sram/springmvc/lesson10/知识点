@@ -26,11 +26,8 @@ springMVC文件上传/下载
 	   </bean>
 	 SpringMVC可以简化文件上传的代码,但是必须满足条件:实现MultipartResolver接口,CommonsMultipartResolver实现了该接口
 	   
-	 pojo
-	 	MultipartFile字段类型
-	 	
 	 controller
-	 	@ModelAttribute
+	 	@RequestParam("fileName") MultipartFile file
 	 	transferTo
 	   
 	   
